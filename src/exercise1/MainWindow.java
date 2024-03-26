@@ -59,7 +59,6 @@ public class MainWindow extends JFrame {
             op2.setText("");
         }
     }
-
     private void onSub(ActionEvent e) {
         try {
             int num1 = Integer.parseInt(op1.getText());
@@ -72,7 +71,6 @@ public class MainWindow extends JFrame {
             op2.setText("");
         }
     }
-
     private void onMul(ActionEvent e) {
         try {
             int num1 = Integer.parseInt(op1.getText());
@@ -85,7 +83,6 @@ public class MainWindow extends JFrame {
             op2.setText("");
         }
     }
-
     private void onDiv(ActionEvent e) {
         try {
             int num1 = Integer.parseInt(op1.getText());
@@ -98,5 +95,5 @@ public class MainWindow extends JFrame {
             op2.setText("");
         }
     }
-
+    
 }
