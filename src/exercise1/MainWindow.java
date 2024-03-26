@@ -3,6 +3,7 @@ package exercise1;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.util.function.ToDoubleBiFunction;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,58 +40,20 @@ public class MainWindow extends JFrame {
         this.add(mul);
         this.add(div);
         this.add(result);
+
         // Ascoltatori
-        add.addActionListener(this::onAdd);
-        sub.addActionListener(this::onSub);
-        mul.addActionListener(this::onMul);
-        div.addActionListener(this::onDiv);
+        add.addActionListener(v -> this.calculate((a,b) -> a+b));
+        sub.addActionListener(v -> this.calculate((a,b) -> a-b));
+        mul.addActionListener(v -> this.calculate((a,b) -> a*b));
+        div.addActionListener(v -> this.calculate((a,b) -> (double)a/(double)b));
 
     }
 
-    private void onAdd(ActionEvent e) {
+    private void calculate(ToDoubleBiFunction<Integer,Integer> func){
         try {
             int num1 = Integer.parseInt(op1.getText());
             int num2 = Integer.parseInt(op2.getText());
-            int res = num1 + num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
-    }
-
-    private void onSub(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 - num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
-    }
-
-    private void onMul(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 * num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
-    }
-
-    private void onDiv(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 / num2;
+            double res = func.applyAsDouble(num1, num2);
             result.setText("Result: " + res);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Not valid numbers.");
