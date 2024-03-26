@@ -47,53 +47,34 @@ public class MainWindow extends JFrame {
 
     }
 
+    private int numbersOnInput(JTextField input){
+        try {
+            return Integer.parseInt(input.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(input, "Not valid numbers.");
+            input.setText("");
+            return 0;
+        }
+    }
+
     private void onAdd(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 + num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
+        int res = numbersOnInput(op1)+numbersOnInput(op2);
+        result.setText("Result: "+res);
     }
+
     private void onSub(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 - num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
+        int res = numbersOnInput(op1)-numbersOnInput(op2);
+        result.setText("Result: "+res);
     }
+
     private void onMul(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 * num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
+        int res = numbersOnInput(op1)*numbersOnInput(op2);
+        result.setText("Result: "+res);
     }
+
     private void onDiv(ActionEvent e) {
-        try {
-            int num1 = Integer.parseInt(op1.getText());
-            int num2 = Integer.parseInt(op2.getText());
-            int res = num1 / num2;
-            result.setText("Result: " + res);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Not valid numbers.");
-            op1.setText("");
-            op2.setText("");
-        }
+        int res = numbersOnInput(op1)/numbersOnInput(op2);
+        result.setText("Result: "+res);
     }
-    
+
 }
